@@ -1,0 +1,45 @@
+﻿Instructions to run the DHT:
+
+On the primary server side:
+
+1. Edit the serv_id number to indicate the id of the current server where it is installed.
+
+Eg:- If it is the first server to come up on the network , then value in the file should be 1. 
+The numbers should be unique and in ascending order.
+
+2. Edit the num_of_serv file to indicate the total number of primary servers on the network.
+
+3. Edit the ahead_server file with the domain name of the next server to come up on the network:
+Eg:- arkanoid.rutgers.edu
+
+4. Edit the behind_server file with the domain name of the previous server to come up on the network.
+Eg:- oxr.rutgers.edu
+
+5. Edit the dht.h file on line 18 to indicate required keyspace
+
+6. Compile the server program as follows:
+g++ mult_serv.cpp -o mult_serv
+
+7. Run the server program with any port no from 20000 to 65535 but it should be identical on all other servers and clients.
+
+Eg: ./mult_serv 50000
+
+On the secondary server side:
+
+1. The serv_id file's contents must be the same as it's primary server.
+
+2. Compile the sis_serv.cpp program:
+g++ sis_serv.cpp -o sis_serv
+
+3. ./sis_serv 50000
+
+
+
+
+On the client side:
+
+1. Compile the client side program
+g++ client.cpp -o client
+
+2. Run the client program 
+Eg:- ./client 50000

@@ -15,6 +15,7 @@
 #include <netdb.h> 
 #include "md5.h"
 #define buf_size 256
+#define key_space 150000                //pow(2,30)
 using namespace std;
 
 map<char,int> hex_dec;
@@ -113,7 +114,7 @@ string read_buffer(int r_sockfd)
 		string ret_contents="";
 		
 		int n = read(r_sockfd,r_buffer,buf_size);             //getting the length of incoming data
-		cout<<"r_buffer = "<<r_buffer<<endl;
+		//cout<<"r_buffer = "<<r_buffer<<endl;
 		 if (n < 0) 
          error("ERROR reading from socket");
 		
@@ -137,9 +138,10 @@ string read_buffer(int r_sockfd)
 int write_file(string filename,string text)
 {
   ofstream myfile;
-  myfile.open(filename.c_str());                             //add ios::binary later
+  myfile.open(filename.c_str(),ios::binary);                             //add ios::binary later
      if(myfile.is_open())
-     {  myfile<<text.c_str();
+     { 
+		  myfile<<text.c_str();
      
       }
 
@@ -165,7 +167,7 @@ string read_file (string filename,string bytes)
   //string filename="Design";
 
  //if 0 is given it means read whole file
- myfile.open(filename.c_str());                                     //add ios::binary later
+ myfile.open(filename.c_str(),ios::binary);                                     //add ios::binary later
 
  if(read_bytes==0)
    

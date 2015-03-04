@@ -1,5 +1,4 @@
 #include "dht.h"
-#define key_space 100000                //pow(2,30)
 using namespace std;
 
 
